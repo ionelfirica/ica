@@ -47,6 +47,14 @@ with SB(uc=True, test=True) as ryute:
             ryute.quit_extra_driver()
     ryute.sleep(1)
     if is_stream_online("brutalles"):
+        url = "https://www.twitch.tv/videos/2490289749"
+        ryute.uc_open_with_reconnect(url, 5)
+        ryute.uc_gui_click_captcha()
+        ryute.sleep(10)
+        ryute.uc_gui_handle_captcha()
+        ryute.sleep(10)
+        if ryute.is_element_present('button:contains("Accept")'):
+            ryute.uc_click('button:contains("Accept")', reconnect_time=4)
         url = "https://www.twitch.tv/brutalles"
         ryute.uc_open_with_reconnect(url, 5)
         if ryute.is_element_present('button:contains("Accept")'):
